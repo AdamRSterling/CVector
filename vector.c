@@ -43,14 +43,14 @@ void add(Vector vec, void* toAdd)
 
 void set(Vector vec, void* toSet, int index)
 {
-   assert(index >= 0 && index <= vec->capacity);
+   assert(index >= 0 && index < vec->capacity);
    // If within boundaries, set value at the index.
    vec->data[index] = toSet;
 }
 
 void removeAt(Vector vec, int index)
 {
-   assert(index >= 0 && index <= vec->capacity);
+   assert(index >= 0 && index < vec->capacity);
    // If within boundaries, remove value at the index.
    // Linear running time!
    vec->data[index] = NULL;
@@ -63,7 +63,7 @@ void removeAt(Vector vec, int index)
       return;
    }
   
-   if(index != vec->items)
+   if(index != vec->items - 1)
    // If removing at the end, copying the array might be avoidable.
    {
       void** newData;
@@ -105,7 +105,7 @@ void removeAt(Vector vec, int index)
 
 void* getAt(Vector vec, int index)
 {
-   assert(index >= 0 && index <= vec->capacity);
+   assert(index >= 0 && index < vec->capacity);
    return vec->data[index];
    // If within boundaries, return the value in the array at index.
 }
